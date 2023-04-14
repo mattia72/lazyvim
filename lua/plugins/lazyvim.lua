@@ -74,22 +74,22 @@ return {
         { "<leader>tb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
         { "<leader>tf", Util.telescope("files"), desc = "Find Files (root dir)" },
         { "<leader>tF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+        { "<leader>th", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+        { "<leader>tm", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
         { "<leader>tr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
         { "<leader>ts", "<cmd>Telescope possession list<cr>", "Telescope possession list" },
         -- git
         --{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
         --{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
         -- search
-        { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
+        { "<leader>ta", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
         { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
         { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-        { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+        { "<leader>tC", "<cmd>Telescope commands<cr>", desc = "Commands" },
         { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
         { "<leader>sg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
         { "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
-        { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
         { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-        { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
         { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
         { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
         { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
@@ -178,58 +178,6 @@ return {
     opts = {
       ignore_install = { "help" },
     },
-  },
-  {
-    "goolord/alpha-nvim",
-    enabled = { utils.no_vscode },
-    opts = function()
-      local version = vim.version()
-      local dashboard = require("alpha.themes.dashboard")
-      local logo = {
-        "                                                                                                          ",
-        "     ░▓▓▓            ▓▓▓                                                                                  ",
-        "   ▒▓▓▓▓▓▓▒          ░▓▓▓▓                                                                                ",
-        " ▒▓▓▓▓▓▓░░░░         ▓▓▓▓▓▓▒                                             ▓▓▓▓                             ",
-        " ▓▓▓▓▓▓▓▓▒▒▒▒        ▓▓▓▓▓▓▓                                                                              ",
-        " ▓▓▓▓▓▓▓▓▓▓▓▓▓▒      ░▓▓▓▓▓▓       ▒▒▓▒         ▒▓▓▒▒    ▓▓▓▓       ▒▓▓▓ ▓▓▓▓  ▓▓▓ ░▓▓▓▓▒  ░▓▓▓▓▓▓        ",
-        " ░░░░░▒▓▓▓▓▓▓▓▓▓     ░▓▓▓▓▓▓    ▓▓      ░▓   ░▓▓     ░▓▓  ▓▓▓▓     ▓▓▓▓  ▓▓▓▓  ▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒      ",
-        " ▒▒▒▒▒▒▒░▒▒▒▒▒▒▒▒    ░▓▓▓▓▓▓   ▓░        ▓░ ▓▓         ▓▓  ▓▓▓▓    ▓▓▓░  ▓▓▓▓  ▓▓▓▓    ░▓▓▓▒    ▒▓▓▓      ",
-        " ░░░░░░░ ▒▒▒▒▒▒▒▒▒▒  ░▓▓▓▓▓▓  ░▓▓▓▓▓▓▓▓▓▓▓▓ ▓▒          ▓▓  ▓▓▓   ▓▓▓▓   ▓▓▓▓  ▓▓▓▓     ▓▓▓▒    ▒▓▓▓      ",
-        " ░░░░░░░   ▒▒▒▒▒▒▒▒▒ ░▓▓▓▓▓▓  ░▓            ▓▓          ▓▓  ▓▓▓▓ ▒▓▓▓    ▓▓▓▓  ▓▓▓▓     ▓▓▓▒    ▒▓▓▓      ",
-        " ░░░░░░░    ▒▒▒▒▒▒▒▒▒░▓▓▓▓▓▓   ▓░           ▓▓         ▓▓    ▒▓▓▒▓▓▓     ▓▓▓▓  ▓▓▓▓     ▓▓▓▒    ▒▓▓▓      ",
-        " ░░░░░░░     ▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓    ▓▓       ▓▒  ▒▓       ▓▓░     ▓▓▓▓▓      ▓▓▓▓  ▓▓▓▓     ▓▓▓▒    ▒▓▓▓      ",
-        " ░░░░░░░       ░░░░░░▓▓▓▓▓▓▓      ▒▓▓▓▓▓▒      ░▒▓▓▓▓▒         ▒▒▒░      ▓▓▓▓  ▓▓▓▒     ▓▓▓▒    ▓▓▓▓      ",
-        " ░░░░░░░        ▓▒▒▒▒▓▓▓▓▓▓▓                                                                              ",
-        "  ░░░░░░         ▓▓▓▓▓▓▓▓▓▓                                                                               ",
-        "    ░░░░           ▓▓▓▓▓▓▓     " .. " " .. (version and version).major .. "." .. (
-          version and version
-        ).minor .. "-" .. (version and version).patch,
-        "      ░▒            ░▓▓▓                                                                                  ",
-      }
-
-      dashboard.section.header.val = logo
-      dashboard.section.buttons.val = {
-        dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("d", " " .. " Delphi", ":so ~/delphi-dev.vim | PossessionLoad delphi-dev<CR>"),
-        dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-        dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-        dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
-        dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-        dashboard.button("o", " " .. " Open Session", ":Telescope possession list<CR>"),
-        dashboard.button("s", " " .. " Restore Last Session", [[:lua require("persistence").load() <cr>]]),
-        dashboard.button("l", "鈴" .. " Lazy", ":Lazy<CR>"),
-        dashboard.button("q", " " .. " Quit", ":qa<CR>"),
-      }
-      for _, button in ipairs(dashboard.section.buttons.val) do
-        button.opts.hl = "AlphaButtons"
-        button.opts.hl_shortcut = "Keyword"
-      end
-      dashboard.section.footer.opts.hl = "Type"
-      dashboard.section.header.opts.hl = "Comment" --"AlphaHeader"
-      dashboard.section.buttons.opts.hl = "AlphaButtons"
-      dashboard.opts.layout[1].val = 8
-      return dashboard
-    end,
   },
 
   --
