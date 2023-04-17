@@ -65,9 +65,9 @@ iabbrev <expr> 2dm  strftime("%Y.%m.%d")
 
 local wk = require("which-key")
 
-wk.register({
-  ["K"] = { show_help, "Show help on word", { mode = "n", noremap = true } },
-})
+-- wk.register({
+--   ["K"] = { show_help, "Show help on word", { mode = "n", noremap = true } },
+-- })
 
 wk.register({
   ["<leader>g"] = { name = "+open file" },
@@ -158,8 +158,6 @@ m.nmap("<leader>fA", "<ESC>:RipGrep -w <C-R><C-W> ", { desc = "RipGrep word unde
 m.vmap("<leader>fa", "<ESC>:RipGrep <C-R>0 %<Left><Left>", { desc = "RipGrep selected in actual file" })
 m.vmap("<leader>fA", "<ESC>:RipGrep <C-R>0", { desc = "RipGrep selected in current dir" })
 
--- highlight selected
-m.vmap("<leader>sh", "<ESC>:match Error /<C-R>0/ ", { desc = "Highlight selected" })
 --reload syntax
 m.nmap("<leader>sy", ":syn off<CR>:syn on<CR>", { desc = "Reload syntax" })
 -- Clear search highlight
@@ -191,3 +189,5 @@ m.nmap("<leader>fd", ":<C-u>let &foldlevel+=(v:count)?(v:count):1<cr>", { desc =
 m.nmap("<leader>fc", function()
   MyShowFoldIndicatorColumn()
 end, { desc = "Show fold indicator" })
+
+m.nmap("<leader>cd", "<CMD>lcd %:p:h <bar> pwd <CR>", { desc = "Set Directory" })
