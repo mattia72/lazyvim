@@ -21,7 +21,7 @@ m.nmap("<leader>tt", "<cmd>vsplit<CR><C-W>L<cmd>MyPwsh<CR><cmd>MySetDefaultShell
 m.nmap("<leader>tc", "<cmd>vsplit<CR><C-W>L<cmd>MyCmd<CR>", { desc = "Open cmd in vsplit" })
 
 -- Select all and increment numbers
-m.nmap("<C-kPlus>", "<C-a>", { remap = false, desc = "Increment num under cursor" })
+m.nmap("<C-kPlus>",  "<C-a>", { remap = false, desc = "Increment num under cursor" })
 m.nmap("<C-kMinus>", "<C-x>", { remap = false, desc = "Decrement num under cursor" })
 
 -- <C-A>,<C-C>,<C-V> handled by mswin.vim
@@ -29,31 +29,31 @@ vim.cmd("source $VIMRUNTIME/mswin.vim")
 -- remap old C-V in normal mode
 m.nmap("<C-V>", "<C-Q>")
 
-m.nmap("<A-PageDown>", "<cmd>m .+1<CR>==", { desc = "Move line down" })
-m.nmap("<A-PageUp>", "<cmd>m .-2<CR>==", { desc = "Move line up" })
+m.nmap("<A-PageDown>", "<cmd>m .+1<CR>==",        { desc = "Move line down" })
+m.nmap("<A-PageUp>",   "<cmd>m .-2<CR>==",        { desc = "Move line up" })
 m.imap("<A-PageDown>", "<esc><cmd>m .+1<CR>==gi", { desc = "Move line down" })
-m.imap("<A-PageUp>", "<esc><cmd>m .-2<CR>==gi", { desc = "Move line up" })
-m.vmap("<A-PageDown>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-m.vmap("<A-PageUp>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+m.imap("<A-PageUp>",   "<esc><cmd>m .-2<CR>==gi", { desc = "Move line up" })
+m.vmap("<A-PageDown>", ":m '>+1<CR>gv=gv",        { desc = "Move selection down" })
+m.vmap("<A-PageUp>",   ":m '<-2<CR>gv=gv",        { desc = "Move selection up" })
 
 m.nmap("<leader>hq", "<cmd>helpclose <cr>", { desc = "Close help window" })
 
 --
 -- Tab navigation like firefox
 --
-m.nmap("<C-S-tab>", "<cmd>tabprevious<CR>", { desc = "Go to prev tab" })
-m.nmap("<C-tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
-m.nmap("<C-S-tab>", "<cmd>tabprevious<CR>", { desc = "Go to prev tab" })
-m.nmap("<C-tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
+m.nmap("<C-S-tab>", "<cmd>tabprevious<CR>",       { desc = "Go to prev tab" })
+m.nmap("<C-tab>",   "<cmd>tabnext<CR>",           { desc = "Go to next tab" })
+m.nmap("<C-S-tab>", "<cmd>tabprevious<CR>",       { desc = "Go to prev tab" })
+m.nmap("<C-tab>",   "<cmd>tabnext<CR>",           { desc = "Go to next tab" })
 m.imap("<C-S-tab>", "<esc><cmd>tabprevious<CR>i", { desc = "Go to prev tab" })
-m.imap("<C-tab>", "<esc><cmd>tabnext<CR>i", { desc = "Go to next tab" })
-m.nmap("<C-t>", "<cmd>tabnew<CR>", { desc = "New tab" })
+m.imap("<C-tab>",   "<esc><cmd>tabnext<CR>i",     { desc = "Go to next tab" })
+m.nmap("<C-t>",     "<cmd>tabnew<CR>",            { desc = "New tab" })
 --m.imap("<C-t>",   "<esc><cmd>tabnew<CR>",       { desc = "New tab" })
 -- Command line
 m.cmap("<C-A>", "<Home>", { desc = "Home" })
-m.cmap("<C-E>", "<End>", { desc = "End" })
+m.cmap("<C-E>", "<End>",  { desc = "End" })
 m.cmap("<C-N>", "<Down>", { desc = "Down" })
-m.cmap("<C-P>", "<Up>", { desc = "Up" })
+m.cmap("<C-P>", "<Up>",   { desc = "Up" })
 
 m.nmap("gV", "`[v`]", { desc = "Visually select the text that was last edited/pasted" })
 
@@ -65,9 +65,20 @@ iabbrev <expr> 2dm  strftime("%Y.%m.%d")
 
 local wk = require("which-key")
 
--- wk.register({
---   ["K"] = { show_help, "Show help on word", { mode = "n", noremap = true } },
--- })
+local function show_help()
+   local file_type = vim.bo.filetype
+   local file_loc = vim.fn.expand('%:p')
+--   print(string.format('%s %s', fileloc, filetype))
+   local file_dir = string.match(file_loc, "(.*[/\\])")
+   local config_dir = vim.fn.stdpath('config')
+   if file_type == 'vim'  or file_type == 'help' or (file_type =='lua' and string.sub(file_dir, 1, #config_dir) == config_dir ) then
+     vim.cmd('h '..vim.fn.expand('<cword>'))
+   end
+end
+
+wk.register({
+  ["K"] = { show_help, "Show help on word", { mode = "n", noremap = true } },
+})
 
 wk.register({
   ["<leader>g"] = { name = "+open file" },
@@ -179,15 +190,11 @@ function MyShowFoldIndicatorColumn()
   end
 end
 
-m.nmap("<leader>fs", function()
-  MyFoldSyntax()
-end, { desc = "Set fold method syntax" })
-m.nmap("<leader>fm", ":set foldmethod=manual<cr>", { desc = "Set fold method manual" })
+m.nmap("<leader>fs", function() MyFoldSyntax() end,                     { desc = "Set fold method syntax" })
+m.nmap("<leader>fm", ":set foldmethod=manual<cr>",                      { desc = "Set fold method manual" })
 -- foldlevel increase/decrease " so works with number prefix
 m.nmap("<leader>fi", ":<C-u>let &foldlevel-=(v:count)?(v:count):1<cr>", { desc = "Increase fold level" })
 m.nmap("<leader>fd", ":<C-u>let &foldlevel+=(v:count)?(v:count):1<cr>", { desc = "Decrease fold level" })
-m.nmap("<leader>fc", function()
-  MyShowFoldIndicatorColumn()
-end, { desc = "Show fold indicator" })
+m.nmap("<leader>fc", function() MyShowFoldIndicatorColumn() end,        { desc = "Show fold indicator" })
 
 m.nmap("<leader>cd", "<CMD>lcd %:p:h <bar> pwd <CR>", { desc = "Set Directory" })

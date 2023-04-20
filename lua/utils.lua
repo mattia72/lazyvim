@@ -17,6 +17,11 @@ function _M.create_cmd_with_notify(args)
   )
 end
 
+function _M.p_ispath(file)
+  local Path = require('plenary.path')
+  return Path.is_path(file)
+end
+
 --- Check if a file or directory exists in this path
 function _M.ispath(file)
    local ok, err, code = os.rename(file, file)
