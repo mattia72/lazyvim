@@ -11,41 +11,13 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "gruvbox",
-      -- colorscheme = "habamax",
+      -- colorscheme = "gruvbox", --"habamax", --"catppuccin"
     },
   },
   { import = "lazyvim.plugins.extras.ui.mini-animate" },
   {
     "folke/lazy.nvim",
     keys = { "<leader>l", false }, --disable keymap
-    opts = {
-      ui = {
-        icons = {
-          cmd = " ",
-          config = " ",
-          event = " ",
-          ft = " ",
-          init = " ",
-          import = " ",
-          keys = " ",
-          lazy = "鈴 ",
-          loaded = "●",
-          not_loaded = "○",
-          plugin = " ",
-          runtime = " ",
-          source = " ",
-          start = " ",
-          task = "✔  ",
-          list = {
-            "●",
-            "➜",
-            "★",
-            "‒",
-          },
-        },
-      },
-    },
   },
   {
     "akinsho/bufferline.nvim",
@@ -53,14 +25,27 @@ return {
     opts = {
       options = {
         mode = "tabs",
-        buffer_close_icon = "",
-        modified_icon = "●",
-        close_icon = "",
-        left_trunc_marker = "",
-        right_trunc_marker = "",
       },
     },
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ignore_install = { "help" },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- disable a keymap
+      keys[#keys + 1] = { "<leader>cd", false }
+    end,
+  },
+
+  --
+  -- Own plugins
+  --
   {
     "gbprod/yanky.nvim",
     -- enabled = false,
@@ -78,23 +63,6 @@ return {
       end, { desc = "Paste from Yanky" })
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ignore_install = { "help" },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    init = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      -- disable a keymap
-      keys[#keys + 1] = { "<leader>cd", false }
-    end,
-  },
-  --
-  -- Own plugins
-  --
   {
     "junegunn/vim-easy-align",
     config = function()
