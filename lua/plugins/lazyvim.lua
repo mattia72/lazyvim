@@ -11,7 +11,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      -- colorscheme = "gruvbox",
+      -- colorscheme = "habamax",
     },
   },
   { import = "lazyvim.plugins.extras.ui.mini-animate" },

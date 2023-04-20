@@ -43,12 +43,14 @@ _M.logo = {
   -- "██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z",
   -- "███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║",
   -- "╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝",
+  -- "  " .. (version and version).major .. "." .. ( version and version).minor .. "-" .. (version and version).patch,
   --"███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
   --"████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
   --"██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
   --"██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
   --"██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
   --"╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+  --"  " .. (version and version).major .. "." .. ( version and version).minor .. "-" .. (version and version).patch,
 }
 
 function _M.logo_length()
@@ -56,7 +58,7 @@ function _M.logo_length()
   for i=1, #_M.logo do
     maxlen = math.max(maxlen, string.len(_M.logo[i]))
   end
-  return maxlen/2 --unicode doubled?
+  return maxlen/2 --unicode double
 end
 
 return _M

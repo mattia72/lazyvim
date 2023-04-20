@@ -74,14 +74,18 @@ return {
       },
     }
   end,
-  mappings = {
-    n = {
-      ["<c-h>"] = "which_key",
-      ["<c-d>"] = require("telescope.actions").delete_buffer,
-    }, -- n
-    i = {
-      ["<c-h>"] = "which_key",
-      ["<c-d>"] = require("telescope.actions").delete_buffer,
-    }, -- i
-  }, -- mappings
+  opts = {
+    defaults = {
+      mappings = {
+        n = {
+          ["<c-h>"] = "which_key",
+          ["<c-d>"] = require("telescope.actions").delete_buffer,
+        }, -- n
+        i = {
+          ["<c-h>"] = "which_key",
+          ["<c-d>"] = require("telescope.actions").delete_buffer,
+        }, -- i
+      }, -- mappings
+    }, --defaults
+  }, -- opts
 }
