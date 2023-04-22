@@ -1,5 +1,6 @@
 return {
   "jedrzejboczar/possession.nvim",
+  enabled = { require("utils").no_vscode },
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("possession").setup({
@@ -64,5 +65,4 @@ return {
       require("telescope").extensions.possession.list()
     end, { desc = "List sessions" })
   end,
-  enabled = { require("utils").no_vscode },
 }
