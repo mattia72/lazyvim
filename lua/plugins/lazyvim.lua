@@ -3,6 +3,7 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 
+local no_vscode = require("utils").no_vscode
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
@@ -10,19 +11,22 @@ return {
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
-    enabled = { require("utils").no_vscode },
+    enabled = { no_vscode },
     opts = {
-      -- colorscheme = "gruvbox", --"habamax", --"catppuccin"
+      colorscheme = "gruvbox", --"habamax", --"catppuccin"
     },
   },
-  { import = "lazyvim.plugins.extras.ui.mini-animate" },
+  {
+    import = "lazyvim.plugins.extras.ui.mini-animate" },
+    enabled = { no_vscode },
   {
     "folke/lazy.nvim",
+    enabled = { no_vscode },
     keys = { "<leader>l", false }, --disable keymap
   },
   {
     "akinsho/bufferline.nvim",
-    enabled = { require("utils").no_vscode },
+    enabled = { no_vscode },
     opts = {
       options = {
         mode = "tabs",
@@ -31,14 +35,14 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    enabled = { require("utils").no_vscode },
+    enabled = { no_vscode },
     opts = {
       ignore_install = { "help" },
     },
   },
   {
     "neovim/nvim-lspconfig",
-    enabled = { require("utils").no_vscode },
+    enabled = { no_vscode },
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- disable a keymap
