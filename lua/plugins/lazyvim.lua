@@ -10,6 +10,7 @@ return {
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
+    enabled = { require("utils").no_vscode },
     opts = {
       -- colorscheme = "gruvbox", --"habamax", --"catppuccin"
     },
@@ -30,12 +31,14 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    enabled = { require("utils").no_vscode },
     opts = {
       ignore_install = { "help" },
     },
   },
   {
     "neovim/nvim-lspconfig",
+    enabled = { require("utils").no_vscode },
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- disable a keymap

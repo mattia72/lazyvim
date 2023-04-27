@@ -1,6 +1,5 @@
 
 local _M = {}
--- TODO: local Path = require('plenary.path')  
 
 function _M.notify_info(title, msg)
   require('notify')(msg,'info', {timeout=2000, title=title})
@@ -17,6 +16,7 @@ function _M.create_cmd_with_notify(args)
   )
 end
 
+-- TODO: comapare plenary and my solution
 function _M.p_ispath(file)
   local Path = require('plenary.path')
   return Path.is_path(file)
