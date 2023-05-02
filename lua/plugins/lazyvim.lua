@@ -13,16 +13,13 @@ return {
     "LazyVim/LazyVim",
     enabled = { no_vscode },
     opts = {
-      colorscheme = "gruvbox", --"habamax", --"catppuccin"
+      colorscheme = "catppuccin-macchiato", --"gruvbox", --"habamax", --"catppuccin"
     },
   },
   {
-    import = "lazyvim.plugins.extras.ui.mini-animate" },
-    enabled = { no_vscode },
-  {
     "folke/lazy.nvim",
     enabled = { no_vscode },
-    keys = { "<leader>l", false }, --disable keymap
+    keys = { {"<leader>l", false} }, --disable keymap couses error
   },
   {
     "akinsho/bufferline.nvim",
@@ -49,6 +46,10 @@ return {
       keys[#keys + 1] = { "<leader>cd", false }
     end,
   },
+  {
+    "echasnovski/mini.animate",
+    enabled = { no_vscode },
+  },
 
   --
   -- Own plugins
@@ -58,7 +59,7 @@ return {
     -- enabled = false,
     config = function()
       require("yanky").setup({})
-      vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
+      vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", {desc = ""})
       vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
       vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
       vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")

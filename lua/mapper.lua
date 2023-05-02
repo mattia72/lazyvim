@@ -11,6 +11,16 @@ function _M.map(args)
   vim.keymap.set(mode, shortcut, command, options)
 end
 
+function _M.map_buf(args)
+  setmetatable(args, {__index={ options={buffer="true"}}})
+  local mode, shortcut, command, options =
+      args[1] or args.mode,
+      args[2] or args.shortcut,
+      args[3] or args.command,
+      args[4] or args.options
+  vim.keymap.set(mode, shortcut, command, options)
+end
+
 function _M.nmap(shortcut, command, options)
   _M.map{ 'n', shortcut, command, options }
 end

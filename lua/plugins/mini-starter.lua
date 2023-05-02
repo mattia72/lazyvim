@@ -66,8 +66,13 @@ return
           local pad_footer = string.rep(" ", pad_count - (#msg/2))
           starter.config.footer = pad_footer .. msg
           pcall(starter.refresh)
+
+          -- local m = require("mapper")
+          -- m.nmap("j", "Down", { desc = "Go down", buffer=0})
+          -- m.nmap("k", "Up", { desc = "Go up", buffer=0})
         end,
       })
+
     end,
 }
 

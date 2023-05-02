@@ -9,3 +9,19 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = false
   end,
 })
+
+-- function Set_cursorcolumn_cursorline()
+--   vim.opt.cursorcolumn = true
+--   vim.opt.cursorline = false --Highlight only the screen column of the cursor
+-- end
+
+-- vim.api.nvim_create_autocmd({ "UIEnter" }, {
+--   -- pattern = { "lua" },
+--   callback = function()
+--     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+--       callback = function()
+--       Set_cursorcolumn_cursorline()
+--       end,
+--     })
+--   end,
+-- })
