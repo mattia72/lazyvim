@@ -11,19 +11,17 @@ return {
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
-    enabled = { no_vscode },
     opts = {
       colorscheme = "catppuccin-macchiato", --"gruvbox", --"habamax", --"catppuccin"
     },
   },
   {
     "folke/lazy.nvim",
-    enabled = { no_vscode },
-    keys = { {"<leader>l", false} }, --disable keymap couses error
+    -- cond = { no_vscode },
+    keys = { { "<leader>l", false } }, --disable keymap couses error
   },
   {
     "akinsho/bufferline.nvim",
-    enabled = { no_vscode },
     opts = {
       options = {
         mode = "tabs",
@@ -32,14 +30,12 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    enabled = { no_vscode },
     opts = {
       ignore_install = { "help" },
     },
   },
   {
     "neovim/nvim-lspconfig",
-    enabled = { no_vscode },
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- disable a keymap
@@ -48,7 +44,6 @@ return {
   },
   {
     "echasnovski/mini.animate",
-    enabled = { no_vscode },
   },
 
   --
@@ -56,10 +51,10 @@ return {
   --
   {
     "gbprod/yanky.nvim",
-    -- enabled = false,
+    -- cond = false,
     config = function()
       require("yanky").setup({})
-      vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", {desc = ""})
+      vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "" })
       vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
       vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
       vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
