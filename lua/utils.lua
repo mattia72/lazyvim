@@ -70,7 +70,8 @@ function _M.table_count(tbl, cond)
 end
 
 function _M.no_vscode()
-  return vim.fn.exists('g:vscode') == 0
+  return not vim.g.vscode
+  -- vim.fn.exists('g:vscode') == 0
 end
 
 function _M.echom(text)

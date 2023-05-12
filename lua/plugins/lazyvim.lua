@@ -7,18 +7,27 @@ local no_vscode = require("utils").no_vscode
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
+  {
+    "catppuccin/nvim",
+    cond = true,
+  },
 
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
+    cond = true,
     opts = {
       colorscheme = "catppuccin-macchiato", --"gruvbox", --"habamax", --"catppuccin"
     },
   },
   {
     "folke/lazy.nvim",
-    -- cond = { no_vscode },
+    -- cond = no_vscode,
     keys = { { "<leader>l", false } }, --disable keymap couses error
+  },
+  {
+    "folke/which-key.nvim",
+    cond = true,
   },
   {
     "akinsho/bufferline.nvim",
