@@ -6,7 +6,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-local no_vscode = require("utils").no_vscode
 
 require("lazy").setup({
   spec = {
@@ -15,7 +14,10 @@ require("lazy").setup({
     -- import any extras modules here
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.vscode" },
+    { import = "lazyvim.plugins.extras.editor.mini-files" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    { import = "lazyvim.plugins.extras.coding.yanky" },
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -25,12 +27,12 @@ require("lazy").setup({
     lazy = false,
     -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
     -- have outdated releases, which may break your Neovim install.
-    version = false, -- always use the latest git commit
+    -- version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
-    cond = no_vscode,
+    -- cond = not vim.g.vscode,
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = no_vscode }, -- automatically check for plugin updates
+  -- checker = { enabled = not vim.g.vscode }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins

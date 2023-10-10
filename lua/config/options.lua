@@ -8,7 +8,7 @@ vim.g.init_root_dir = utils.join_path(os.getenv("XDG_CONFIG_HOME"), "nvim\\")
 vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
-vim.opt.guifont = "UbuntuMono NF:h12:cEASTEUROPE"
+vim.opt.guifont = "UbuntuMono Nerd Font:h12:cEASTEUROPE"
 
 vim.opt.smartindent = true -- do clever autoindenting (local to buffer)
 vim.opt.preserveindent = true -- Preserve kind of whitespace when changing indent (local to buffer)

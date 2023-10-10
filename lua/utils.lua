@@ -50,6 +50,11 @@ end
 
 function _M.get_last_modified_in_dir(dir, file_pattern)
   local last_modified
+
+  if dir == nil then
+    dir = ''
+  end
+    
   for file in io.popen('dir '.. _M.join_path(dir, file_pattern)..' /b /od'):lines()  do
     last_modified  = file
   end
@@ -69,7 +74,7 @@ function _M.table_count(tbl, cond)
   return count, count_cond
 end
 
-function _M.no_vscode()
+function _M.no_vscode() --If you want to include any additional plugins in vscode, you can set vscode=true on a plugin spec.
   return not vim.g.vscode
   -- vim.fn.exists('g:vscode') == 0
 end

@@ -10,7 +10,7 @@ end
 
 return {
   "goolord/alpha-nvim",
-  enabled = require("utils").no_vscode(),
+  enabled = true,
   opts = function()
     local start_utils = require("start-utils")
     local dashboard = require("alpha.themes.dashboard")

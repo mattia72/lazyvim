@@ -1,6 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
-  enabled = { require("utils").no_vscode },
+  enabled = true,
   keys = function()
     local Util = require("lazyvim.util")
     return {
@@ -13,7 +13,7 @@ return {
       { "<leader>tf", Util.telescope("files"), desc = "Find Files (root dir)" },
       { "<leader>tF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>th", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { "<leader>tl", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
+      { "<leader>tg", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
       { "<leader>tm", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
       { "<leader>tr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       { "<leader>ts", "<cmd>Telescope possession list<cr>", "Telescope possession list" },

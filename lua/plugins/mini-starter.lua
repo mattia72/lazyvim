@@ -1,7 +1,7 @@
 return
   {
     "echasnovski/mini.starter",
-    enabled= require('utils').no_vscode(),
+    enabled = true,
     version = false, -- wait till new 0.7.0 release to put it back on semver
     event = "VimEnter",
     opts = function()
@@ -22,10 +22,11 @@ return
         evaluate_single = true,
         header = logo,
         items = {
-          new_section("Load Last Sessions", "PossessionLoad "..start_utils.last_session, "Session"),
-          new_section("Saved Sessions ",     "Telescope possession list",                 "Session"),
+          new_section("Load Last Possessions", "PossessionLoad "..start_utils.last_session, "Session"),
+          new_section("Saved Possessions ",     "Telescope possession list",                 "Session"),
+          new_section("Saved Sessions ( nvim-possession )",    [[lua require("nvim-possession").list()]],   "Session"),
           new_section("Restore Last State", [[lua require("persistence").load()]],       "Session"),
-          new_section("Find File ",          "Telescope find_files",                      "Telescope"),
+          new_section("Find File ",         "Telescope find_files",                      "Telescope"),
           new_section("Recent Files",       "Telescope oldfiles",                        "Telescope"),
           new_section("Grep Text",          "Telescope live_grep",                       "Telescope"),
           new_section("Edit Config",        "e $MYVIMRC",                                "Config"),

@@ -190,11 +190,12 @@ function MyShowFoldIndicatorColumn()
   end
 end
 
-m.nmap("<leader>fs", function() MyFoldSyntax() end,                     { desc = "Set fold method syntax" })
-m.nmap("<leader>fm", ":set foldmethod=manual<cr>",                      { desc = "Set fold method manual" })
+m.nmap("<leader>Fs", function() MyFoldSyntax() end,                     { desc = "Set fold method syntax" })
+m.nmap("<leader>Fm", ":set foldmethod=manual<cr>",                      { desc = "Set fold method manual" })
 -- foldlevel increase/decrease " so works with number prefix
-m.nmap("<leader>fi", ":<C-u>let &foldlevel-=(v:count)?(v:count):1<cr>", { desc = "Increase fold level" })
-m.nmap("<leader>fd", ":<C-u>let &foldlevel+=(v:count)?(v:count):1<cr>", { desc = "Decrease fold level" })
-m.nmap("<leader>fc", function() MyShowFoldIndicatorColumn() end,        { desc = "Show fold indicator" })
+m.nmap("<leader>Fi", ":<C-u>let &foldlevel-=(v:count)?(v:count):1<cr>", { desc = "Increase fold level" })
+m.nmap("<leader>Fd", ":<C-u>let &foldlevel+=(v:count)?(v:count):1<cr>", { desc = "Decrease fold level" })
+m.nmap("<leader>Fc", function() MyShowFoldIndicatorColumn() end,        { desc = "Show fold indicator" })
 
 m.nmap("<leader>cd", "<CMD>lcd %:p:h <bar> pwd <CR>", { desc = "Set Directory" })
+m.nmap("<leader>cp", "<CMD>let @+ = expand('%:p')<CR>", { desc = "Copy current directory to clipboard" })
