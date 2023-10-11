@@ -34,11 +34,12 @@ return {
   {
     "folke/noice.nvim",
     keys = {
-      -- stylelua: ignore
-      { "<leader>snl", false},
-      { "<leader>snh", false},
-      { "<leader>sna", false},
-      { "<leader>snd", false},
+      { "<leader>snl", false },
+      { "<leader>snh", false },
+      { "<leader>sna", false },
+      { "<leader>snd", false },
+
+      --
       { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
       { "<leader>sNl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
       { "<leader>sNh", function() require("noice").cmd("history") end, desc = "Noice History" },
@@ -46,7 +47,7 @@ return {
       { "<leader>sNd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
       { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll forward", mode = {"i", "n", "s"} },
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},
-  },
+    },
   },
   {
     "akinsho/bufferline.nvim",
@@ -75,8 +76,16 @@ return {
   -- Own plugins
   --
   --  { dir = "~/dev/vim/vim-ripgrep" },
+  { 'echasnovski/mini.align',
+    version = false,
+    config = function()
+      require("mini.align").setup()
+    end,
+  },
   {
     "junegunn/vim-easy-align",
+    enabled=false,
+    version=false,
     config = function()
       local mapper = require("mapper")
       mapper.xmap("ga", "<Plug>(EasyAlign)", { desc = "Align selected at ..." })
