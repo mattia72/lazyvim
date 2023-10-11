@@ -22,9 +22,9 @@ return
         evaluate_single = true,
         header = logo,
         items = {
-          new_section("Load Last Possessions", "PossessionLoad "..start_utils.last_session, "Session"),
-          new_section("Saved Possessions ",     "Telescope possession list",                 "Session"),
-          new_section("Saved Sessions ( nvim-possession )",    [[lua require("nvim-possession").list()]],   "Session"),
+          new_section("Load Last Possession", "PossessionLoad "..start_utils.last_session, "Session"),
+          new_section("Saved Possessions... ",     "Telescope possession list",                 "Session"),
+          -- new_section("Saved Sessions ( nvim-possession )",    [[lua require("nvim-possession").list()]],   "Session"),
           new_section("Restore Last State", [[lua require("persistence").load()]],       "Session"),
           new_section("Find File ",         "Telescope find_files",                      "Telescope"),
           new_section("Recent Files",       "Telescope oldfiles",                        "Telescope"),
