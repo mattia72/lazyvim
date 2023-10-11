@@ -34,6 +34,7 @@ return
           new_section("New File",           "ene | startinsert",                         "Built-in"),
           new_section("Quit",               "qa",                                        "Built-in"),
         },
+        footer = 'Type prefix keys, or use <Down>/<Up> arrows (or <C-n>/<C-p>)',
         content_hooks = {
           starter.gen_hook.adding_bullet(pad .. "░ ", false),
           starter.gen_hook.aligning("center", "center"),
@@ -63,9 +64,11 @@ return
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
           local maxlen = require("start-utils").logo_length()
           local pad_count =  math.floor(maxlen/2)
+          local help_msg ='Type prefix keys, or use <Down>/<Up> arrows (or <C-n>/<C-p>)'
+          local pad_help = string.rep(" ", pad_count - (#help_msg/2))
           local msg = "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count  .. " plugins in " .. ms .. "ms"
           local pad_footer = string.rep(" ", pad_count - (#msg/2))
-          starter.config.footer = pad_footer .. msg
+          starter.config.footer = "\n" .. pad_help .. help_msg .. "\n\n" .. pad_footer .. msg
           pcall(starter.refresh)
 
           -- local m = require("mapper")
