@@ -1,6 +1,12 @@
 return {
   "nvim-telescope/telescope.nvim",
-  build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+  dependencies = {
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "C:\\home\\mata\\scoop\\apps\\mingw\\current\\bin\\make"
+        --'cmake -G "NMake Makefiles JOM" -D CMAKE_C_COMPILER=gcc -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+    },
+  },
   enabled = true,
   keys = function()
     local Util = require("lazyvim.util")
