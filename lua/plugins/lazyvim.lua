@@ -5,8 +5,8 @@
 
 return {
   -- add colorschemes
-  { "ellisonleao/gruvbox.nvim" },
-  { "catppuccin/nvim" },
+  { "ellisonleao/gruvbox.nvim", lazy=true},
+  { "catppuccin/nvim", lazy=true},
 
   -- Configure LazyVim to load colorscheme
   {
@@ -56,6 +56,18 @@ return {
     },
   },
   {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      sections = {
+        lualine_y = {
+          { "filetype", separator = '', padding = { left = 1, right = 1 } },
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", padding = { left = 0, right = 1 } },
+        }
+      }
+    }
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ignore_install = { "help" },
@@ -74,6 +86,18 @@ return {
   -- Own plugins
   --
   --  { dir = "~/dev/vim/vim-ripgrep" },
+  {
+    -- dir=require('utils').joinpath(os.getenv('HOME'), '/dev/vim/vim-delphi') ,
+    dir='c:/home/mata/dev/vim/vim-delphi',
+    ft='delphi' --Lazy Load on filetype delphi
+  },
+  {
+    'andymass/vim-matchup',
+    init = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_surround_enabled = 1
+    end,
+  },
   { 'echasnovski/mini.align',
     vscode=true,
     version = false,
