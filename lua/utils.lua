@@ -41,7 +41,8 @@ function _M.isdir(path)
 end
 
 function _M.join_path(...)
-  local on_windows = vim.loop.os_uname().version:match 'Windows'
+  -- local on_windows = vim.loop.os_uname().version:match 'Windows'
+  local on_windows = vim.fn.has('win64') or vim.fn.has('win32');
   local path_sep = on_windows and '\\' or '/'
   local result = table.concat({ ... }, path_sep)
   --print('joined: '..result)
@@ -54,7 +55,7 @@ function _M.get_last_modified_in_dir(dir, file_pattern)
   if dir == nil then
     dir = ''
   end
-    
+
   for file in io.popen('dir '.. _M.join_path(dir, file_pattern)..' /b /od'):lines()  do
     last_modified  = file
   end

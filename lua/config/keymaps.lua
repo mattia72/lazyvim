@@ -76,17 +76,17 @@ local function show_help()
    end
 end
 
-wk.register({
+wk.add({
   ["K"] = { show_help, "Show help on word", { mode = "n", noremap = true } },
 })
 
-wk.register({
+wk.add({
   ["<leader>g"] = { name = "+open file" },
   -- nnoremap <leader>gf <C-W>vgf<C-W>x
   ["<leader>gf"] = { "<C-W>vgf<C-W>x<C-W>l", "🚀 Open file under cursor in vsplit", { mode = "n", noremap = true } },
 })
 
-wk.register({
+wk.add({
   ["<leader>q"] = { name = "+quickfix" },
   ["<leader>ql"] = {
     "<cmd>cfirst <bar> while 1 <bar> cnext <bar> endwhile <cr>",
